@@ -2,29 +2,31 @@ import React, { useState } from "react";
 import Axios from "axios";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
-
+import "../styling/login.css";
 
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [name, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const url = "http://localhost:3000/user";
   const loginSubmit = (e) => {
     e.preventDefault();
     Axios.post(`${url}/login`, {
-      username: username,
+      name: name,
       password: password,
     }).then((response) => {
+      console.log(response)
       if (response.data.message === "Admin logged in successfully") {
         console.log("admin dashbord");
-        secureLocalStorage.setItem("admin_id", response.data.admin_id);
-        navigate("/admin");
+        // secureLocalStorage.setItem("admin_id", response.data.admin_id);
+        // navigate("/admin");
         window.location.reload();
       } else {
-        secureLocalStorage.setItem("user_id", response.data.user_id);
+        // secureLocalStorage.setItem("user_id", response.data.user_id);
         console.log("user dashboard");
-        navigate("/user");
+        alert("user logged in ")
+        // navigate("/user");
         window.location.reload();
       }
     });
@@ -39,8 +41,8 @@ const Login = () => {
         />
       </video> */}
       <div className="background-text">
-        <span className="animated-letter">M</span>ovie
-        <span className="animated-letter">M</span>ix
+        <span className="animated-letter">Hotel Management System</span>
+        {/* <span className="animated-letter">M</span>ix */}
       </div>
       <div className="login-card">
         <h2>Login</h2>

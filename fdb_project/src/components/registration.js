@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import "../Styling/Register.css";
+import "../styling/registration.css";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -8,7 +8,7 @@ const Register = () => {
   const [name, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [mobile_no, setMobileno] = useState("");
+  const [gender, setGender] = useState("");
   const [age, setAge] = useState(0);
   const url = "http://localhost:3000/user";
 
@@ -24,10 +24,14 @@ const Register = () => {
       setUsername("");
       setEmail("");
       setPassword("");
-      setMobileno("");
+      setGender("");
       setAge("");
       navigate("/");
-    });
+      console.log(response);
+    }
+    
+    );
+    
   };
 
   return (
@@ -77,17 +81,17 @@ const Register = () => {
           />
         </div>
         <div className="">
-          <label htmlFor="mobile_no" className="form-label">
-            Mobile No
+          <label htmlFor="gender" className="form-label">
+            Gender
           </label>
           <input
             type="text"
             className="form-control"
-            value={mobile_no}
-            onChange={(e) => setMobileno(e.target.value)}
-            placeholder="Your mobile number"
-            id="mobile"
-            name="mobile"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            placeholder="Your Gender"
+            id="gender"
+            name="gender"
           />
         </div>
         <div className="">
