@@ -1,0 +1,26 @@
+.hotel-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .hotel-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+  }
+  
+  .hotel-photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .hotel-photos img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  

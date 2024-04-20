@@ -1,6 +1,10 @@
 const express = require("express");
 const connection = require("./database");
 const userRouter = require("./routes/user");
+const locationRouter=require('./routes/location')
+const hotelRouter=require('./routes/hotel')
+const amenitiesRouter=require('./routes/amenities')
+const roomsRouter=require('./routes/room')
 const app = express();
 var cors = require("cors");
 app.use(cors());
@@ -13,4 +17,8 @@ app.listen(port, () => {
 
 app.use(express.json());
 app.use("/user", userRouter);
+app.use('/location',locationRouter)
+app.use('/hotel',hotelRouter)
+app.use('/amenities',amenitiesRouter)
+app.use('/rooms',roomsRouter)
 module.exports = app;

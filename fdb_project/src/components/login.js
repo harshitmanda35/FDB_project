@@ -8,7 +8,7 @@ import "../styling/login.css";
 const Login = () => {
   const [name, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const url = "http://localhost:3000/user";
   const loginSubmit = (e) => {
     e.preventDefault();
@@ -20,13 +20,13 @@ const Login = () => {
       if (response.data.message === "Admin logged in successfully") {
         console.log("admin dashbord");
         // secureLocalStorage.setItem("admin_id", response.data.admin_id);
-        // navigate("/admin");
+        navigate("/admin");
         window.location.reload();
       } else {
         // secureLocalStorage.setItem("user_id", response.data.user_id);
         console.log("user dashboard");
         alert("user logged in ")
-        // navigate("/user");
+        navigate("/user/hotels");
         window.location.reload();
       }
     });

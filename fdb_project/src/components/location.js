@@ -9,7 +9,7 @@ const AddLocation = () => {
   const [city, setcity] = useState("");
   const [state, setstate] = useState("");
   const navigate = useNavigate();
-  const url = "http://localhost:8080/location";
+  const url = "http://localhost:3000/location";
   const locationSubmit = (e) => {
     e.preventDefault();
     Axios.post(`${url}/create`, {

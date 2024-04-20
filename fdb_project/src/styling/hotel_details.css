@@ -1,0 +1,36 @@
+.hotel-details-container {
+    padding: 20px;
+  }
+  
+  .amenities-container {
+    margin-top: 20px;
+  }
+  
+  .amenities-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .amenity-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .amenity-card h3 {
+    margin-top: 0;
+  }
+  
+  .amenity-card p {
+    margin: 10px 0;
+  }
+  
+  .amenity-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  

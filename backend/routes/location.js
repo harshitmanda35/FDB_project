@@ -1,6 +1,7 @@
 const express = require("express");
-const connection = require("../config/database");
+const connection = require("../database");
 const router = express.Router();
+
 router.get("/get", (req, res, next) => {
   var query = "select * from location";
   connection.query(query, (err, results) => {
