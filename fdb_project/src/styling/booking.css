@@ -1,0 +1,28 @@
+/* BookingConfirmationPage.css */
+
+.booking-confirmation-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 50px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .booking-confirmation-container h1 {
+    text-align: center;
+  }
+  
+  .booking-confirmation-container h2 {
+    margin-top: 20px;
+  }
+  
+  .booking-confirmation-container div {
+    margin-top: 20px;
+  }
+  
+  .booking-confirmation-container p {
+    margin: 10px 0;
+  }
+  

@@ -5,6 +5,7 @@ const locationRouter=require('./routes/location')
 const hotelRouter=require('./routes/hotel')
 const amenitiesRouter=require('./routes/amenities')
 const roomsRouter=require('./routes/room')
+const bookingRouter=require('./routes/booking')
 const app = express();
 var cors = require("cors");
 app.use(cors());
@@ -21,4 +22,5 @@ app.use('/location',locationRouter)
 app.use('/hotel',hotelRouter)
 app.use('/amenities',amenitiesRouter)
 app.use('/rooms',roomsRouter)
+app.use('/booking',bookingRouter)
 module.exports = app;

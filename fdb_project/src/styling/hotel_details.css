@@ -33,4 +33,34 @@
     border-radius: 8px;
   }
   
+  .book-now-button {
+    background-color: #007bff; /* Blue color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
   
+  .book-now-button:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+  }
+
+/* HotelDetailsPage.css */
+.rooms-container select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  box-sizing: border-box;
+  background-color: #fff;
+  height: auto; /* Allow the height to adjust based on content */
+}
+
+.rooms-container select:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+}

@@ -23,7 +23,7 @@ const Login = () => {
         navigate("/admin");
         window.location.reload();
       } else {
-        // secureLocalStorage.setItem("user_id", response.data.user_id);
+        localStorage.setItem("user_id", response.data.user_id);
         console.log("user dashboard");
         alert("user logged in ")
         navigate("/user/hotels");
