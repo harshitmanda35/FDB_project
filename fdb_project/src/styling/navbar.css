@@ -1,0 +1,15 @@
+/* Navbar.css */
+.navbar {
+    margin-bottom: 20px;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #fff;
+  }
+  .ml-auto{
+    margin-right: auto!important;
+  }

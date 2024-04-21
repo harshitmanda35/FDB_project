@@ -19,6 +19,7 @@ const Login = () => {
       console.log(response)
       if (response.data.message === "Admin logged in successfully") {
         console.log("admin dashbord");
+        localStorage.setItem("admin_id", response.data.admin_id);
         // secureLocalStorage.setItem("admin_id", response.data.admin_id);
         navigate("/admin");
         window.location.reload();

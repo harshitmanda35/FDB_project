@@ -6,6 +6,7 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import HotelPage from './components/hotel';
 import HotelDetailsPage from './components/hotelDetails';
 import BookingConfirmationPage from './components/booking';
+import NavBar from './components/navbar';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
      <Route path="/user/hotels" element={<HotelPage />} />
      <Route path="/user/hotel_details/:hotelId" element={<HotelDetailsPage/>} />
      <Route path="/booking/:booking_id/:rooms_booked" element={<BookingConfirmationPage/>} />
+     <Route path="/admin" element={<><NavBar/><HotelPage/></>} />
      </Routes>
   
   </BrowserRouter>,
