@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Axios from "axios";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
 import "../styling/login.css";
 
@@ -9,7 +8,9 @@ const Login = () => {
   const [name, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const url = "http://localhost:3000/user";
+
   const loginSubmit = (e) => {
     e.preventDefault();
     Axios.post(`${url}/login`, {
@@ -19,35 +20,33 @@ const Login = () => {
       console.log(response)
       if (response.data.message === "Admin logged in successfully") {
         console.log("admin dashbord");
+        localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("admin_id", response.data.admin_id);
-        // secureLocalStorage.setItem("admin_id", response.data.admin_id);
-        navigate("/admin");
+        localStorage.setItem("isAdmin", true);
+        navigate("/department");
         window.location.reload();
       } else {
-        localStorage.setItem("user_id", response.data.user_id);
         console.log("user dashboard");
+        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("user_id", response.data.user_id);
+        localStorage.setItem("isAdmin", false);
         alert("user logged in ")
-        navigate("/user/hotels");
+        navigate("/hotels");
         window.location.reload();
       }
     });
   };
 
   return (
-    <div className="container">
-      {/* <video autoPlay loop muted className="background-video">
-        <source
-          src="https://www.shutterstock.com/shutterstock/videos/1063863823/preview/stock-footage-cheerful-friends-having-fun-in-cinema-joyful-couple-laughing-in-movie-theater-happy-woman-and.webm"
-          type="video/mp4"
-        />
-      </video> */}
-      <div className="background-text">
-        <span className="animated-letter">Hotel Management System</span>
-        {/* <span className="animated-letter">M</span>ix */}
+    <div className="h-screen w-full bg-gray-100">
+
+      <div className="text-4xl pt-8">
+        <span className="">Hotel Management System</span>
       </div>
-      <div className="login-card">
-        <h2>Login</h2>
-        <form onSubmit={loginSubmit}>
+
+      <div className="w-11/12 sm:w-2/6 m-auto flex flex-col items-center">
+        <h2 className="text-3xl my-5 font-bold">Login</h2>
+        <form className="login-form border rounded m-auto bg-white p-8" onSubmit={loginSubmit}>
           <label htmlFor="username" className="form-label">
             User Name
           </label>
@@ -71,13 +70,13 @@ const Login = () => {
             id="password"
             name="password"
           />
-          <div className="button-container">
-            <button type="submit" className="btn btn-primary">
+          <div className="mt-4">
+            <button type="submit" className="btn bg-green-600 py-2 px-4 text-white rounded">
               Log In
             </button>
-            <p>
+            <p className="mt-2">
               new user?
-              <Link to="/register" className="link">
+              <Link to="/register" className="link ml-2 underline">
                 Sign Up
               </Link>
             </p>

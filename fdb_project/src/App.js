@@ -7,18 +7,21 @@ import HotelPage from './components/hotel';
 import HotelDetailsPage from './components/hotelDetails';
 import BookingConfirmationPage from './components/booking';
 import NavBar from './components/navbar';
+import Department from './components/departments';
 
 function App() {
   return (
     <div className="App">
      <BrowserRouter>
+     <NavBar/>
      <Routes>
      <Route path="/" element={<Login />} />
      <Route path="/register" element={<Register />} />
-     <Route path="/user/hotels" element={<HotelPage />} />
+     <Route path="/hotels" element={<HotelPage />} />
      <Route path="/user/hotel_details/:hotelId" element={<HotelDetailsPage/>} />
      <Route path="/booking/:booking_id/:rooms_booked" element={<BookingConfirmationPage/>} />
-     <Route path="/admin" element={<><NavBar/><HotelPage/></>} />
+     <Route path="/department" element={<Department />} />
+     {/* <Route path="/admin" element={<NavBar/>} /> */}
      </Routes>
   
   </BrowserRouter>,

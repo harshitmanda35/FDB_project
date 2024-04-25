@@ -28,10 +28,7 @@ const Register = () => {
       setAge("");
       navigate("/");
       console.log(response);
-    }
-    
-    );
-    
+    });
   };
 
   return (
