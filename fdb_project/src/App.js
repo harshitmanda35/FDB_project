@@ -8,6 +8,8 @@ import HotelDetailsPage from './components/hotelDetails';
 import BookingConfirmationPage from './components/booking';
 import NavBar from './components/navbar';
 import Department from './components/departments';
+import StaffsPage from './components/staff';
+import MaintenacePage from './components/maintenance';
 
 function App() {
   return (
@@ -21,7 +23,8 @@ function App() {
      <Route path="/user/hotel_details/:hotelId" element={<HotelDetailsPage/>} />
      <Route path="/booking/:booking_id/:rooms_booked" element={<BookingConfirmationPage/>} />
      <Route path="/department" element={<Department />} />
-     {/* <Route path="/admin" element={<NavBar/>} /> */}
+     <Route path="/staff" element={<StaffsPage/>} />
+     <Route path="/maintenance" element={<MaintenacePage/>} />
      </Routes>
   
   </BrowserRouter>,

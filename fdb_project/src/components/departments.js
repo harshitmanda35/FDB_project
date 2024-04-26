@@ -16,6 +16,7 @@ function Department() {
 	const [departments, setDepartments] = useState([]);
 	const [selectedDept, setSelectedDept] = useState(dept);
 	const [showModal, setShowModal] = useState(false);
+	const admin_id= parseInt(localStorage.getItem("admin_id"))
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 	const url = 'http://localhost:3000';
 
@@ -25,7 +26,7 @@ function Department() {
 	}, []);
 
 	function fetchDepts() {
-		axios.get(`${url}/department/`)
+		axios.get(`${url}/department/admin/${admin_id}`)
 			.then(response => {
 				setDepartments(response.data);
 			})

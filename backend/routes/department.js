@@ -2,10 +2,11 @@ const express = require("express");
 const connection = require("../database");
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
+router.get("/admin/:admin_id", (req, res, next) => {
+  const admin_id=req.params.admin_id;
   const query =
-    `select * from department`;
-  connection.query(query, (err, results) => {
+    `select * from department where admin_id=?`;
+  connection.query(query,[admin_id] ,(err, results) => {
     if (!err) {
       if (results.length > 0) {
         const departments = results;

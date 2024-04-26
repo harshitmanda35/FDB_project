@@ -7,6 +7,8 @@ const amenitiesRouter=require('./routes/amenities')
 const roomsRouter=require('./routes/room')
 const bookingRouter=require('./routes/booking')
 const departmentRouter=require('./routes/department')
+const staffRouter=require('./routes/staff')
+const maintenaceRouter=require('./routes/maintenance')
 const app = express();
 var cors = require("cors");
 app.use(cors());
@@ -25,4 +27,6 @@ app.use('/amenities',amenitiesRouter)
 app.use('/rooms',roomsRouter)
 app.use('/booking',bookingRouter)
 app.use('/department', departmentRouter)
+app.use('/staff', staffRouter)
+app.use('/maintenace',maintenaceRouter)
 module.exports = app;
