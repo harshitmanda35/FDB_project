@@ -9,6 +9,9 @@ const bookingRouter=require('./routes/booking')
 const departmentRouter=require('./routes/department')
 const staffRouter=require('./routes/staff')
 const maintenaceRouter=require('./routes/maintenance')
+const preferenceRouter=require('./routes/preferences')
+const eventRouter=require('./routes/events')
+const reviewRouter=require('./routes/review')
 const app = express();
 var cors = require("cors");
 app.use(cors());
@@ -29,4 +32,7 @@ app.use('/booking',bookingRouter)
 app.use('/department', departmentRouter)
 app.use('/staff', staffRouter)
 app.use('/maintenace',maintenaceRouter)
+app.use('/pref',preferenceRouter)
+app.use('/event',eventRouter)
+app.use('/review',reviewRouter)
 module.exports = app;

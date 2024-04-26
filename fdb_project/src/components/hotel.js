@@ -14,7 +14,7 @@ let hotel = {
   opening_hours: "",
   location_id: 0,
   total_rooms: 0,
-  price_per_room: 0
+  price_per_room: 0,
 }
 
 function HotelPage() {

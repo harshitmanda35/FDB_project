@@ -10,6 +10,8 @@ import NavBar from './components/navbar';
 import Department from './components/departments';
 import StaffsPage from './components/staff';
 import MaintenacePage from './components/maintenance';
+import UserPrefPage from './components/preference';
+import Events from './components/event';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
      <Route path="/department" element={<Department />} />
      <Route path="/staff" element={<StaffsPage/>} />
      <Route path="/maintenance" element={<MaintenacePage/>} />
+     <Route path="/pref" element={<UserPrefPage/>} />
+     <Route path="/event/:hotel_id" element={<Events/>} />
      </Routes>
   
   </BrowserRouter>,

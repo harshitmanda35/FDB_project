@@ -93,6 +93,15 @@ const Navbar = () => {
                       to="/hotels">
                       Hotels
                     </Link>
+                    <Link
+                      className={
+                        url.pathname === '/pref'
+                          ? ' text-white px-4 py-3 block rounded-md text-md font-medium'
+                          : 'text-black px-4 py-3 rounded-md block text-md font-medium'
+                      }
+                      to="/pref">
+                      My Preferences
+                    </Link>
                   </div>
                 )}
 

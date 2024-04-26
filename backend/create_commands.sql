@@ -126,6 +126,38 @@ CREATE TABLE maintenance_staff (
 
 
 
+CREATE TABLE user_preferences (
+    preference_id int,
+    special_requests varchar(200),
+    room_type_preference varchar(200),
+    floor_level_preference varchar(200),
+    amenities_preference varchar(200),
+    language_preference varchar(200),
+    user_id int,
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
+);
 
+SET SQL_SAFE_UPDATES = 0;
 
+CREATE TABLE events (
+    event_id int not null auto_increment,
+    event_name varchar(200),
+    description varchar(200),
+    date_of_event DATE,
+    additional_notes varchar(200),
+    hotel_id int,
+    primary key(event_id),
+    FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id)
+);
 
+CREATE TABLE review (
+    review_id int not null auto_increment,
+    review_description varchar(200),
+    rating varchar(200),
+    comments varchar(200),
+    user_id int,
+    hotel_id int,
+    primary key(review_id),
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id)
+);

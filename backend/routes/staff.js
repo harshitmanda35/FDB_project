@@ -25,7 +25,7 @@ router.post('/:staff_id', (req, res, next) => {
   const staff = req.body;
   console.log("staff req body", dept)
   var update = 'update staff set staff_salary=?, position=?, where staff_id=?'
-  connection.query(update, [staff.staff_salary, staff.position], (err, results) => {
+  connection.query(update, [staff.staff_salary, staff.position,staff.staff_id], (err, results) => {
     console.log("results", results)
     if (!err) {
       return res.status(200).json(results);

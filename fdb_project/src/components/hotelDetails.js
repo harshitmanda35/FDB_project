@@ -3,11 +3,13 @@ import axios from 'axios'; // assuming you use axios for API calls
 import { useParams } from 'react-router-dom'; // Import useParams from react-router-dom to get URL parameters
 import { Link, useNavigate } from "react-router-dom";
 import "../styling/hotel_details.css";
+import "../styling/review.css"
 
 function HotelDetailsPage() {
   const { hotelId } = useParams(); // Get the hotel ID from the URL parameters
   const [hotel, setHotel] = useState(null);
   const [amenities, setAmenities] = useState([]);
+   const [reviews,setReviews]=useState([]);
   const [rooms, setRooms] = useState([]);
   const [selectedAmenities, setSelectedAmenities] = useState([]);
   const [selectedRooms, setSelectedRooms] = useState(1);
@@ -27,7 +29,7 @@ function HotelDetailsPage() {
       .catch(error => {
         console.error('Error fetching hotel details:', error);
       });
-
+fetchReview();
     // Fetch hotel amenities based on the hotel ID
     axios.get(`${url}/amenities/get/${hotelId}`)
       .then(response => {
@@ -50,14 +52,24 @@ function HotelDetailsPage() {
   if (!hotel) {
     return <div>Loading...</div>;
   }
+  function fetchReview() {
+    axios.get(`${url}/review/${hotelId}`)
+      .then(response => {
+        console.log(response)
+        setReviews(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching hotels:', error);
+      });
+  }
   // Calculate total cost of selected amenities and rooms
   const selectedAmenitiesCost = selectedAmenities.reduce((acc, amenityId) => {
     const amenity = amenities.find(a => a.amenity_id === amenityId);
-    return acc + (amenity ? amenity.cost : 0);
+    return acc + (amenity ? parseInt(amenity.cost) : 0);
   }, 0);
-
-  const totalCost = (rooms_booked > 0 ? hotel[0].price_per_room : 0) * rooms_booked * num_nights + selectedAmenitiesCost;
-  console.log(totalCost, "totalcost")
+console.log(selectedAmenitiesCost,"amenities cost")
+  const totalCost = ((rooms_booked > 0 ? hotel[0].price_per_room : 0) * rooms_booked * num_nights )+parseInt(selectedAmenitiesCost);
+  console.log(totalCost, "totalcost here")
 
   const handleAmenityChange = (event) => {
     const amenityId = parseInt(event.target.value);
@@ -113,12 +125,28 @@ function HotelDetailsPage() {
     setRoomsbooked(selectedOptions.length)
     setSelectedRoomNumbers(selectedOptions);
   };
-
+const ToEvent=()=>{
+  navigate(`/event/${hotelId}`)
+}
   return (
     <>
-
+<div className='relative px-8 m-auto'>
+				{/* <h1 className='text-2xl my-4 font-bold'>Events</h1> */}
+				<button onClick={() => ToEvent} className='absolute top-0 right-5 btn bg-lime-700 font-bold border rounded px-2.5 py-2 ml-auto text-white'>Event</button>
+			</div>
 
       <div className="hotel-details-container">
+
+      <h2>Reviews:</h2>
+      {reviews?.map((review) => (
+          <div key={review.review_id} className="review-card">
+            <p>Comment: {review.comments}</p>
+            <p>Review Date: {review.review_description}</p>
+            <p>Reviewed By: {review.name}</p>
+            <p>Hotel Rating: {review.rating}</p>
+          
+          </div>
+        ))}
         <h1>{hotel.hotel_name}</h1>
         <div className="amenities-container">
           <h2>Amenities</h2>
@@ -137,10 +165,17 @@ function HotelDetailsPage() {
             ))}
           </div>
         </div>
+        <br>
+        </br>
+        <br></br>
         <p><strong>Rooms Available in the {hotel[0].hotel_name} are: </strong>{hotel[0].total_rooms}</p>
         <p><strong>Cost of each room is: </strong>{hotel[0].price_per_room}</p>
+        <br></br>
+        <br></br>
+      </div>
+
         <div className="amenities-cards">
-          {amenities.map(amenity => (
+        {amenities.map(amenity => (
             <div key={amenity.amenity_id} className="amenity-card">
               <label>
                 <input
@@ -153,6 +188,14 @@ function HotelDetailsPage() {
               </label>
             </div>
           ))}
+           <input type="number" className="amenity-card"
+            placeholder='No. of Rooms' value={rooms_booked} onChange={handleRoomBooked}
+          ></input>
+          <input type="number" className="amenity-card"
+            placeholder='No. of Nights' value={num_nights} onChange={numNights}
+          ></input>
+      <br></br>
+      <button className="book-now-button" onClick={handleBooking}>Book Now</button>
           {/* <div className="rooms-container">
  <select multiple onChange={handleRoomChange}>
           {rooms.map(room => (
@@ -163,21 +206,8 @@ function HotelDetailsPage() {
           ))}
         </select>
         </div> */}
-          <input type="number" className="amenity-card"
-            placeholder='No. of Rooms' value={rooms_booked} onChange={handleRoomBooked}
-          ></input>
-          <input type="number" className="amenity-card"
-            placeholder='No. of Nights' value={num_nights} onChange={numNights}
-          ></input>
         </div>
-        <br></br>
-
-        <br></br>
-        <br></br>
-        <button className="book-now-button" onClick={handleBooking}>Book Now</button>
-
-      </div>
-
+    
     </>
   );
 }
