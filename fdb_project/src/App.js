@@ -12,6 +12,7 @@ import StaffsPage from './components/staff';
 import MaintenacePage from './components/maintenance';
 import UserPrefPage from './components/preference';
 import Events from './components/event';
+import MyBookings from './components/mybookings';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
      <Route path="/maintenance" element={<MaintenacePage/>} />
      <Route path="/pref" element={<UserPrefPage/>} />
      <Route path="/event/:hotel_id" element={<Events/>} />
+     <Route path="/mybooking" element={<MyBookings/>} />
      </Routes>
   
   </BrowserRouter>,

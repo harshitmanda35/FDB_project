@@ -161,3 +161,19 @@ CREATE TABLE review (
     FOREIGN KEY (user_id) REFERENCES user(user_id),
     FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id)
 );
+
+CREATE TABLE coupons (
+    coupon_id int not null auto_increment,
+    coupon_name varchar(200),
+    discount int,
+    description varchar(200),
+    admin_id int,
+    primary key(coupon_id),
+    FOREIGN KEY (admin_id) REFERENCES admin(admin_id)
+);
+CREATE TABLE user_coupon (
+    user_id int,
+    coupon_id int,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (coupon_id) REFERENCES coupons(coupon_id)
+);

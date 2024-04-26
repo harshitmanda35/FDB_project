@@ -72,3 +72,23 @@ VALUES
     ('Average experience, room was not as expected.', '3', 'Room cleanliness could be improved.', 1, 1),
     ('Wonderful time, beautiful surroundings.', '5', 'The mountain views were breathtaking.', 3, 2),
     ('Disappointing stay, cleanliness could be improved.', '2', 'Disappointed with the room condition.', 2, 3);
+
+
+INSERT INTO coupons (coupon_name, discount, description, admin_id) 
+VALUES 
+    ('FIRSTTIME20', '20%', 'Get 20% off on your first booking.', 1),
+    ('WEEKENDSALE10', '10%', 'Weekend sale: Enjoy 10% off on all bookings.', 2),
+    ('FREESHIPPING', 'Free', 'Free shipping on orders over $50.', 1),
+    ('LOYALTY25', '25%', 'Loyalty reward: Get 25% off on your next purchase.', 2),
+    ('SUMMERDEAL15', '15%', 'Special summer deal: Save 15% on selected items.', 1);
+
+INSERT INTO user_coupon (user_id, coupon_id) 
+VALUES 
+    (1, 1),
+    (2, 2),
+    (1, 3),
+    (2, 4),
+    (1, 5),
+    (3, 1),
+    (2, 3);
+

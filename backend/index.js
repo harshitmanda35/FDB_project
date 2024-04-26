@@ -12,6 +12,7 @@ const maintenaceRouter=require('./routes/maintenance')
 const preferenceRouter=require('./routes/preferences')
 const eventRouter=require('./routes/events')
 const reviewRouter=require('./routes/review')
+const couponRouter=require('./routes/coupon')
 const app = express();
 var cors = require("cors");
 app.use(cors());
@@ -35,4 +36,5 @@ app.use('/maintenace',maintenaceRouter)
 app.use('/pref',preferenceRouter)
 app.use('/event',eventRouter)
 app.use('/review',reviewRouter)
+app.use('/coupon',couponRouter)
 module.exports = app;

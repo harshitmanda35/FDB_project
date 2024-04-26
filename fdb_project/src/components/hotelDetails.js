@@ -10,12 +10,16 @@ function HotelDetailsPage() {
   const [hotel, setHotel] = useState(null);
   const [amenities, setAmenities] = useState([]);
    const [reviews,setReviews]=useState([]);
+   const [coupons,setCoupons]=useState([]);
   const [rooms, setRooms] = useState([]);
   const [selectedAmenities, setSelectedAmenities] = useState([]);
+  const [selectedCoupon, setSelectedCoupon] = useState(null);
+  const [disount, setDiscount] = useState(0);
   const [selectedRooms, setSelectedRooms] = useState(1);
   const [rooms_booked, setRoomsbooked] = useState(null);
   const [num_nights, setNumnights] = useState(null);
   const [selectedRoomNumbers, setSelectedRoomNumbers] = useState([]);
+  const user_id= parseInt(localStorage.getItem("user_id"))
   const url = 'http://localhost:3000'
   const navigate = useNavigate();
 
@@ -30,6 +34,7 @@ function HotelDetailsPage() {
         console.error('Error fetching hotel details:', error);
       });
 fetchReview();
+fetchCoupons();
     // Fetch hotel amenities based on the hotel ID
     axios.get(`${url}/amenities/get/${hotelId}`)
       .then(response => {
@@ -62,13 +67,37 @@ fetchReview();
         console.error('Error fetching hotels:', error);
       });
   }
+  function fetchCoupons() {
+    axios.get(`${url}/coupon/${user_id}`)
+      .then(response => {
+        console.log(response)
+        setCoupons(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching hotels:', error);
+      });
+  }
+  const handleCouponChange = (coupon_id) => {
+    setSelectedCoupon(coupon_id);
+    axios.get(`${url}/coupon/get/${coupon_id}`)
+      .then(response => {
+        setDiscount(response.data[0].discount);
+      })
+      .catch(error => {
+        console.error('Error fetching hotels:', error);
+      });
+    console.log(coupon_id,"coupon discount here")
+  };
   // Calculate total cost of selected amenities and rooms
   const selectedAmenitiesCost = selectedAmenities.reduce((acc, amenityId) => {
     const amenity = amenities.find(a => a.amenity_id === amenityId);
     return acc + (amenity ? parseInt(amenity.cost) : 0);
   }, 0);
 console.log(selectedAmenitiesCost,"amenities cost")
-  const totalCost = ((rooms_booked > 0 ? hotel[0].price_per_room : 0) * rooms_booked * num_nights )+parseInt(selectedAmenitiesCost);
+  let totalCost = ((rooms_booked > 0 ? hotel[0].price_per_room : 0) * rooms_booked * num_nights )+parseInt(selectedAmenitiesCost);
+  if(selectedCoupon){
+totalCost=totalCost-(totalCost*disount)/100
+  }
   console.log(totalCost, "totalcost here")
 
   const handleAmenityChange = (event) => {
@@ -167,13 +196,10 @@ const ToEvent=()=>{
         </div>
         <br>
         </br>
-        <br></br>
         <p><strong>Rooms Available in the {hotel[0].hotel_name} are: </strong>{hotel[0].total_rooms}</p>
         <p><strong>Cost of each room is: </strong>{hotel[0].price_per_room}</p>
         <br></br>
-        <br></br>
       </div>
-
         <div className="amenities-cards">
         {amenities.map(amenity => (
             <div key={amenity.amenity_id} className="amenity-card">
@@ -194,8 +220,7 @@ const ToEvent=()=>{
           <input type="number" className="amenity-card"
             placeholder='No. of Nights' value={num_nights} onChange={numNights}
           ></input>
-      <br></br>
-      <button className="book-now-button" onClick={handleBooking}>Book Now</button>
+     
           {/* <div className="rooms-container">
  <select multiple onChange={handleRoomChange}>
           {rooms.map(room => (
@@ -207,7 +232,24 @@ const ToEvent=()=>{
         </select>
         </div> */}
         </div>
-    
+        <br></br>
+        Available coupons:
+        <div className="amenities-cards">
+        {coupons.map(coupon => (
+      <label key={coupon.coupon_id}>
+        <input
+          type="radio"
+          name="coupon"
+          value={coupon.coupon_id}
+          checked={selectedCoupon === coupon.coupon_id}
+          onChange={() => handleCouponChange(coupon.coupon_id)}
+        />
+        {coupon.coupon_name} - {coupon.discount}
+      </label>
+    ))}
+                </div>
+<br></br>
+                <button className="book-now-button" onClick={handleBooking}>Book Now</button>
     </>
   );
 }
