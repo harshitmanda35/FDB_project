@@ -37,11 +37,9 @@ router.post('/login',(req,res,next)=>{
                     return res.status(404).json({message:"Enter proper username and password"})
                 }
             })
-            
         }
         else{
             return res.status(500).json(err)
-
         }
     })
 })

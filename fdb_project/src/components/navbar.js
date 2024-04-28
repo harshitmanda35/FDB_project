@@ -93,7 +93,7 @@ const Navbar = () => {
                       to="/hotels">
                       Hotels
                     </Link>
-                    <Link
+                  {!isAdmin&& <Link
                       className={
                         url.pathname === '/pref'
                           ? ' text-white px-4 py-3 block rounded-md text-md font-medium'
@@ -101,8 +101,8 @@ const Navbar = () => {
                       }
                       to="/pref">
                       My Preferences
-                    </Link>
-                    <Link
+                    </Link>}
+                 {!isAdmin &&  <Link
                       className={
                         url.pathname === '/mybooking'
                           ? ' text-white px-4 py-3 block rounded-md text-md font-medium'
@@ -110,7 +110,7 @@ const Navbar = () => {
                       }
                       to="/mybooking">
                       My bookings
-                    </Link>
+                    </Link>}
                   </div>
                 )}
 
@@ -164,7 +164,7 @@ const Navbar = () => {
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
                   tabIndex="-1">
-                  <Link
+                  {/* <Link
                     to="#"
                     className="z-1 block px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
@@ -175,7 +175,12 @@ const Navbar = () => {
                       logout();
                     }}>
                     Sign out
-                  </Link>
+                  </Link> */}
+                  <button onClick={() => {
+                      // setLoading(true);
+                      setIsShowMenu(!isShowMenu);
+                      logout();
+                  }}>Sign Out</button>
                 </div>
               )}
             </div>

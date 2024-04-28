@@ -93,8 +93,14 @@ fetchCoupons();
     const amenity = amenities.find(a => a.amenity_id === amenityId);
     return acc + (amenity ? parseInt(amenity.cost) : 0);
   }, 0);
+
+
+
 console.log(selectedAmenitiesCost,"amenities cost")
+
+
   let totalCost = ((rooms_booked > 0 ? hotel[0].price_per_room : 0) * rooms_booked * num_nights )+parseInt(selectedAmenitiesCost);
+
   if(selectedCoupon){
 totalCost=totalCost-(totalCost*disount)/100
   }
@@ -161,8 +167,10 @@ const ToEvent=()=>{
     <>
 <div className='relative px-8 m-auto'>
 				{/* <h1 className='text-2xl my-4 font-bold'>Events</h1> */}
-				<button onClick={() => ToEvent} className='absolute top-0 right-5 btn bg-lime-700 font-bold border rounded px-2.5 py-2 ml-auto text-white'>Event</button>
+        Clicke here to view the Events in this hotel:
+				<button onClick={ToEvent} className='absolute top-0 right-25 btn bg-lime-700 font-bold border rounded px-2.5 py-2 ml-auto text-white'>Event</button>
 			</div>
+      <br></br>
 
       <div className="hotel-details-container">
 
@@ -170,7 +178,7 @@ const ToEvent=()=>{
       {reviews?.map((review) => (
           <div key={review.review_id} className="review-card">
             <p>Comment: {review.comments}</p>
-            <p>Review Date: {review.review_description}</p>
+            <p>Review: {review.review_description}</p>
             <p>Reviewed By: {review.name}</p>
             <p>Hotel Rating: {review.rating}</p>
           

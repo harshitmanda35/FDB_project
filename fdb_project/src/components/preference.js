@@ -10,7 +10,7 @@ let pref = {
     special_requests: "",
     special_requests: "",
     floor_level_preference: "",
-    amenities_preference: 0,
+    amenities_preference: "",
     language_preference: "",
   user_id: parseInt(localStorage.getItem("user_id"))
 }
