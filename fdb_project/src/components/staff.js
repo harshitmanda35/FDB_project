@@ -176,7 +176,7 @@ function StaffsPage() {
 								position: e.target.value
 							}
 						})}
-						placeholder="Enter Staff description"
+						placeholder="Enter Position"
 						id="desc"
 						name="desc"
 						value={selectedStaff.position}

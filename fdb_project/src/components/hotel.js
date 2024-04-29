@@ -154,7 +154,7 @@ function HotelPage() {
             ))}
           </ul>
           {isAdmin && <div className="py-2">
-            <button className="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add new location</button>
+            {/* <button className="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add new location</button> */}
           </div>}
         </div>
       }

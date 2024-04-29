@@ -24,8 +24,8 @@ router.get("/admin/:admin_id", (req, res, next) => {
 router.post('/:maintenance_id', (req, res, next) => {
   const main = req.body;
   console.log("main req body", main)
-  var update = 'update maintenace set description=?, status=?, priority=?, comments=? where maintenance_id=?'
-  connection.query(update, [main.description, main.status, main.priority, main.comments], (err, results) => {
+  var update = 'update maintenance set description=?, status=?, priority=?, comments=? where maintenance_id=?'
+  connection.query(update, [main.description, main.status, main.priority, main.comments,main.maintenance_id], (err, results) => {
     console.log("results", results)
     if (!err) {
       return res.status(200).json(results);
@@ -38,14 +38,17 @@ router.post('/:maintenance_id', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const main = req.body;
-  console.log("main req body", main)
-  var insert = 'Insert into maintenace (description, status, priority, comments,admin_id) values(?,?,?,?,?)'
+  console.log("fkjdsakfj")
+  console.log("main req body post call", main.description, main.status, main.priority, main.comments, main.admin_id)
+  var insert = 'insert into maintenance (description, status, priority, comments,admin_id) values(?,?,?,?,?)'
   connection.query(insert, [main.description, main.status, main.priority, main.comments, main.admin_id], (err, results) => {
     console.log("results", results)
     if (!err) {
+      console.log(results)
       return res.status(200).json(results);
     }
     else {
+      console.log(err)
       return res.status(500).json(err)
     }
   })

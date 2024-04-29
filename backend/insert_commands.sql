@@ -76,11 +76,11 @@ VALUES
 
 INSERT INTO coupons (coupon_name, discount, description, admin_id) 
 VALUES 
-    ('FIRSTTIME20', '20%', 'Get 20% off on your first booking.', 1),
-    ('WEEKENDSALE10', '10%', 'Weekend sale: Enjoy 10% off on all bookings.', 2),
-    ('FREESHIPPING', 'Free', 'Free shipping on orders over $50.', 1),
-    ('LOYALTY25', '25%', 'Loyalty reward: Get 25% off on your next purchase.', 2),
-    ('SUMMERDEAL15', '15%', 'Special summer deal: Save 15% on selected items.', 1);
+    ('FIRSTTIME20', '20', 'Get 20% off on your first booking.', 1),
+    ('WEEKENDSALE10', '10', 'Weekend sale: Enjoy 10% off on all bookings.', 2),
+    ('FREESHIPPING', '100', 'Free shipping on orders over $50.', 1),
+    ('LOYALTY25', '25', 'Loyalty reward: Get 25% off on your next purchase.', 2),
+    ('SUMMERDEAL15', '15', 'Special summer deal: Save 15% on selected items.', 1);
 
 INSERT INTO user_coupon (user_id, coupon_id) 
 VALUES 

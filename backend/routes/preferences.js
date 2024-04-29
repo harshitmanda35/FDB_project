@@ -38,7 +38,7 @@ router.post('/:preference_id', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const pref = req.body;
-  console.log("Preference req body", staff)
+  console.log("Preference req body", pref)
   var insert = 'Insert into user_preferences (special_requests, room_type_preference, floor_level_preference, amenities_preference, language_preference,user_id) values(?,?,?,?,?,?)'
   connection.query(insert, [pref.special_requests, pref.room_type_preference,pref.floor_level_preference, pref.amenities_preference, pref.language_preference,pref.user_id], (err, results) => {
     console.log("results", results)

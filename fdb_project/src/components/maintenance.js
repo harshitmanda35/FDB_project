@@ -8,7 +8,7 @@ import ReactModal from 'react-modal';
 let main = {
   description: "",
   status: "",
-  priority: "",
+  priority: 0,
   comments: "",
   admin_id: parseInt(localStorage.getItem("admin_id"))
 }
@@ -31,7 +31,7 @@ function MaintenacePage() {
   }, []);
   const fetchMaintenace = (e) => {
     // API call
-    axios.get(`${url}/maintenace/admin/${admin_id}`)
+    axios.get(`${url}/maintenance/admin/${admin_id}`)
     .then(response => {
         setMaintenace(response.data);
     })
@@ -62,8 +62,8 @@ function MaintenacePage() {
 
   const updateOrCreateMaintenace = (e) => {
     e.preventDefault();
-
-    if (selectedMaintenace.maintenance_id == "") {
+console.log(selectedMaintenace.maintenance_id ,"maintenaceid")
+    if (!selectedMaintenace.maintenance_id) {
         axios.post(`${url}/maintenance/`, selectedMaintenace)
             .then(response => {
                 console.log(response)
@@ -187,7 +187,7 @@ function MaintenacePage() {
 						onChange={(e) => setSelectedMaintenace((main) => {
 							return {
 								...main,
-								priority: e.target.value
+								priority: parseInt(e.target.value)
 							}
 						})}
 						placeholder="Enter Priority"

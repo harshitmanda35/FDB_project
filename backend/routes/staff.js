@@ -23,15 +23,18 @@ router.get("/admin/:admin_id", (req, res, next) => {
 
 router.post('/:staff_id', (req, res, next) => {
   const staff = req.body;
-  console.log("staff req body", dept)
-  var update = 'update staff set staff_salary=?, position=?, where staff_id=?'
-  connection.query(update, [staff.staff_salary, staff.position,staff.staff_id], (err, results) => {
+  console.log("staff req body", staff)
+  var update = 'update staff set staff_name=?, staff_salary=?, position=? where staff_id=?'
+  connection.query(update, [staff.staff_name,staff.staff_salary, staff.position,staff.staff_id], (err, results) => {
     console.log("results", results)
     if (!err) {
+      console.log(results)
       return res.status(200).json(results);
     }
     else {
-      return res.status(500).json(err)
+      console.log(err)
+      return res.send(err);
+     
     }
   })
 })
@@ -39,7 +42,7 @@ router.post('/:staff_id', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const staff = req.body;
   console.log("staff req body", staff)
-  var insert = 'Insert into staff (staff_name, position, staff_salary, gender,admin_id) values(?,?,?,?)'
+  var insert = 'Insert into staff (staff_name, position, staff_salary, gender,admin_id) values(?,?,?,?,?)'
   connection.query(insert, [staff.staff_name, staff.position, staff.staff_salary, staff.gender,staff.admin_id], (err, results) => {
     console.log("results", results)
     if (!err) {
